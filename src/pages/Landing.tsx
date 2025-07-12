@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { Recycle, Star, ChevronRight, ArrowRight, Users, Shirt, Award } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import heroImage from '../assets/hero-image.jpg';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '../components/ui/carousel';
 
 const Landing = () => {
   const featuredItems = [
@@ -14,7 +15,7 @@ const Landing = () => {
     },
     {
       id: 2,
-      title: "Designer Sneakers",
+      title: "Designer Sneakers", 
       image: "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=400",
       points: 200,
       condition: "Good"
@@ -25,6 +26,55 @@ const Landing = () => {
       image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=400",
       points: 120,
       condition: "Like New"
+    },
+    {
+      id: 4,
+      title: "Leather Handbag",
+      image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400",
+      points: 180,
+      condition: "Excellent"
+    },
+    {
+      id: 5,
+      title: "Wool Sweater",
+      image: "https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=400",
+      points: 90,
+      condition: "Good"
+    },
+    {
+      id: 6,
+      title: "Sports Watch",
+      image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400",
+      points: 250,
+      condition: "Like New"
+    },
+    {
+      id: 7,
+      title: "Silk Scarf",
+      image: "https://images.unsplash.com/photo-1601762603339-fd61e28b698a?w=400",
+      points: 70,
+      condition: "Excellent"
+    },
+    {
+      id: 8,
+      title: "Canvas Backpack",
+      image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400",
+      points: 110,
+      condition: "Good"
+    },
+    {
+      id: 9,
+      title: "Sunglasses",
+      image: "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400",
+      points: 85,
+      condition: "Like New"
+    },
+    {
+      id: 10,
+      title: "Baseball Cap",
+      image: "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=400",
+      points: 40,
+      condition: "Good"
     }
   ];
 
@@ -124,30 +174,36 @@ const Landing = () => {
             <p className="text-muted-foreground">Discover trending pieces from our community</p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {featuredItems.map((item) => (
-              <div key={item.id} className="card-rewear group cursor-pointer">
-                <div className="aspect-square mb-4 overflow-hidden rounded-lg">
-                  <img 
-                    src={item.image} 
-                    alt={item.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
-                <h3 className="text-lg font-semibold text-foreground mb-2">{item.title}</h3>
-                <div className="flex justify-between items-center mb-3">
-                  <span className="text-primary font-bold">{item.points} points</span>
-                  <span className="text-sm text-muted-foreground bg-muted px-2 py-1 rounded">
-                    {item.condition}
-                  </span>
-                </div>
-                <Link to={`/item/${item.id}`} className="inline-flex items-center justify-center w-full text-green-400 border border-green-400 px-4 py-2 rounded-md hover:bg-green-800 hover:text-white transition">
-                  View Details
-                  <ChevronRight size={16} className="ml-1" />
-                </Link>
-              </div>
-            ))}
-          </div>
+          <Carousel className="w-full">
+            <CarouselContent className="-ml-2 md:-ml-4">
+              {featuredItems.map((item) => (
+                <CarouselItem key={item.id} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
+                  <div className="card-rewear group cursor-pointer h-full">
+                    <div className="aspect-square mb-4 overflow-hidden rounded-lg">
+                      <img 
+                        src={item.image} 
+                        alt={item.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                    </div>
+                    <h3 className="text-lg font-semibold text-foreground mb-2">{item.title}</h3>
+                    <div className="flex justify-between items-center mb-3">
+                      <span className="text-primary font-bold">{item.points} points</span>
+                      <span className="text-sm text-muted-foreground bg-muted px-2 py-1 rounded">
+                        {item.condition}
+                      </span>
+                    </div>
+                    <Link to={`/item/${item.id}`} className="inline-flex items-center justify-center w-full text-green-400 border border-green-400 px-4 py-2 rounded-md hover:bg-green-800 hover:text-white transition">
+                      View Details
+                      <ChevronRight size={16} className="ml-1" />
+                    </Link>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious />
+            <CarouselNext />
+          </Carousel>
         </div>
       </section>
 

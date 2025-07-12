@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Heart, Share2, Star, User, MapPin, Clock, RefreshCw } from 'lucide-react';
@@ -8,31 +9,173 @@ const ItemListing = () => {
   const [selectedImage, setSelectedImage] = useState(0);
   const [isLiked, setIsLiked] = useState(false);
 
-  // Mock item data - in a real app, this would come from an API
-  const item = {
-    id: id,
-    title: "Vintage Denim Jacket",
-    description: "A beautiful vintage denim jacket in excellent condition. Perfect for layering and adding a classic touch to any outfit. This piece has been well-maintained and shows minimal signs of wear.",
-    images: [
-      "https://images.unsplash.com/photo-1544022613-e87ca75a784a?w=600",
-      "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600",
-      "https://images.unsplash.com/photo-1584464491033-06628f3a6b7b?w=600"
-    ],
-    points: 150,
-    condition: "Excellent",
-    size: "Medium",
-    category: "Jackets",
-    tags: ["vintage", "denim", "casual", "blue"],
-    owner: {
-      name: "Sarah M.",
-      avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b1c5?w=100",
-      rating: 4.8,
-      swaps: 23
+  // Mock item data with all 10 items
+  const itemDatabase = {
+    "1": {
+      id: "1",
+      title: "Vintage Denim Jacket",
+      description: "A beautiful vintage denim jacket in excellent condition. Perfect for layering and adding a classic touch to any outfit. This piece has been well-maintained and shows minimal signs of wear.",
+      images: [
+        "https://images.unsplash.com/photo-1544022613-e87ca75a784a?w=600",
+        "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600",
+        "https://images.unsplash.com/photo-1584464491033-06628f3a6b7b?w=600"
+      ],
+      points: 150,
+      condition: "Excellent",
+      size: "Medium",
+      category: "Jackets",
+      tags: ["vintage", "denim", "casual", "blue"]
     },
-    location: "San Francisco, CA",
-    postedDate: "2 days ago",
-    status: "Available"
+    "2": {
+      id: "2",
+      title: "Designer Sneakers",
+      description: "Limited edition designer sneakers in pristine condition. These premium athletic shoes feature advanced cushioning technology and a sleek modern design that pairs perfectly with any casual outfit.",
+      images: [
+        "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=600",
+        "https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=600",
+        "https://images.unsplash.com/photo-1551107696-a4b0c5a0d9a2?w=600"
+      ],
+      points: 200,
+      condition: "Good",
+      size: "10",
+      category: "Shoes",
+      tags: ["designer", "sneakers", "athletic", "white"]
+    },
+    "3": {
+      id: "3",
+      title: "Summer Dress",
+      description: "Elegant floral summer dress perfect for warm weather occasions. Features a flattering A-line silhouette and breathable fabric that keeps you comfortable all day long.",
+      images: [
+        "https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=600",
+        "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=600",
+        "https://images.unsplash.com/photo-1566479179817-c502db3a1bc0?w=600"
+      ],
+      points: 120,
+      condition: "Like New",
+      size: "Small",
+      category: "Dresses",
+      tags: ["summer", "floral", "casual", "feminine"]
+    },
+    "4": {
+      id: "4",
+      title: "Leather Handbag",
+      description: "Genuine leather handbag with multiple compartments and premium hardware. This timeless piece combines functionality with sophisticated style, perfect for both work and evening occasions.",
+      images: [
+        "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600",
+        "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600",
+        "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=600"
+      ],
+      points: 180,
+      condition: "Excellent",
+      size: "One Size",
+      category: "Accessories",
+      tags: ["leather", "handbag", "luxury", "brown"]
+    },
+    "5": {
+      id: "5",
+      title: "Wool Sweater",
+      description: "Cozy merino wool sweater with classic cable knit pattern. Perfect for layering during cooler months, this sweater offers both warmth and style with its timeless design.",
+      images: [
+        "https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=600",
+        "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=600",
+        "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600"
+      ],
+      points: 90,
+      condition: "Good",
+      size: "Large",
+      category: "Sweaters",
+      tags: ["wool", "knit", "warm", "neutral"]
+    },
+    "6": {
+      id: "6",
+      title: "Sports Watch",
+      description: "High-performance sports watch with water resistance and multiple fitness tracking features. Includes heart rate monitor, GPS, and long-lasting battery for active lifestyles.",
+      images: [
+        "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600",
+        "https://images.unsplash.com/photo-1508057198894-247b23fe5ade?w=600",
+        "https://images.unsplash.com/photo-1434493789847-2f02dc6ca35d?w=600"
+      ],
+      points: 250,
+      condition: "Like New",
+      size: "One Size",
+      category: "Accessories",
+      tags: ["sports", "watch", "fitness", "technology"]
+    },
+    "7": {
+      id: "7",
+      title: "Silk Scarf",
+      description: "Luxurious silk scarf with beautiful paisley pattern. This versatile accessory can be worn multiple ways and adds an elegant touch to any outfit, day or night.",
+      images: [
+        "https://images.unsplash.com/photo-1601762603339-fd61e28b698a?w=600",
+        "https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?w=600",
+        "https://images.unsplash.com/photo-1571945153237-4929e783af4a?w=600"
+      ],
+      points: 70,
+      condition: "Excellent",
+      size: "One Size",
+      category: "Accessories",
+      tags: ["silk", "scarf", "luxury", "pattern"]
+    },
+    "8": {
+      id: "8",
+      title: "Canvas Backpack",
+      description: "Durable canvas backpack with multiple pockets and padded straps. Perfect for school, work, or travel with its spacious interior and comfortable design.",
+      images: [
+        "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600",
+        "https://images.unsplash.com/photo-1581605405669-fcdf81165afa?w=600",
+        "https://images.unsplash.com/photo-1553735558-c5e7c86cc8bf?w=600"
+      ],
+      points: 110,
+      condition: "Good",
+      size: "One Size",
+      category: "Accessories",
+      tags: ["canvas", "backpack", "practical", "casual"]
+    },
+    "9": {
+      id: "9",
+      title: "Sunglasses",
+      description: "Stylish polarized sunglasses with UV protection. Features a classic aviator design that complements any face shape and provides excellent protection from harmful rays.",
+      images: [
+        "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=600",
+        "https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=600",
+        "https://images.unsplash.com/photo-1473496169904-658ba7c44804?w=600"
+      ],
+      points: 85,
+      condition: "Like New",
+      size: "One Size",
+      category: "Accessories",
+      tags: ["sunglasses", "aviator", "protection", "style"]
+    },
+    "10": {
+      id: "10",
+      title: "Baseball Cap",
+      description: "Classic baseball cap with adjustable strap and breathable fabric. Perfect for casual outings and outdoor activities, featuring a timeless design that never goes out of style.",
+      images: [
+        "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600",
+        "https://images.unsplash.com/photo-1521369909029-2afed882baee?w=600",
+        "https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?w=600"
+      ],
+      points: 40,
+      condition: "Good",
+      size: "One Size",
+      category: "Accessories",
+      tags: ["baseball", "cap", "casual", "adjustable"]
+    }
   };
+
+  const item = itemDatabase[id as keyof typeof itemDatabase] || itemDatabase["1"];
+
+  // Common owner and location data for all items
+  const owner = {
+    name: "Sarah M.",
+    avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b1c5?w=100",
+    rating: 4.8,
+    swaps: 23
+  };
+
+  const location = "San Francisco, CA";
+  const postedDate = "2 days ago";
+  const status = "Available";
 
   const relatedItems = [
     {
@@ -59,12 +202,10 @@ const ItemListing = () => {
   ];
 
   const handleSwapRequest = () => {
-    // Handle swap request logic
     console.log('Swap request sent for item:', id);
   };
 
   const handleRedeemPoints = () => {
-    // Handle points redemption logic
     console.log('Redeem points for item:', id);
   };
 
@@ -119,11 +260,11 @@ const ItemListing = () => {
             {/* Status Badge */}
             <div className="flex justify-between items-start mb-4">
               <span className={`px-3 py-1 rounded-full text-sm font-medium ${
-                item.status === 'Available' 
+                status === 'Available' 
                   ? 'bg-primary/20 text-primary border border-primary/30' 
                   : 'bg-muted text-muted-foreground'
               }`}>
-                {item.status}
+                {status}
               </span>
               
               <div className="flex gap-2">
@@ -207,21 +348,21 @@ const ItemListing = () => {
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <img 
-                    src={item.owner.avatar} 
-                    alt={item.owner.name}
+                    src={owner.avatar} 
+                    alt={owner.name}
                     className="w-12 h-12 rounded-full"
                   />
                   <div>
-                    <h4 className="font-medium text-foreground">{item.owner.name}</h4>
+                    <h4 className="font-medium text-foreground">{owner.name}</h4>
                     <div className="flex items-center gap-1 text-sm text-muted-foreground">
                       <Star size={14} className="text-primary fill-current" />
-                      <span>{item.owner.rating}</span>
+                      <span>{owner.rating}</span>
                       <span>•</span>
-                      <span>{item.owner.swaps} swaps</span>
+                      <span>{owner.swaps} swaps</span>
                     </div>
                   </div>
                 </div>
-                <Link to={`/profile/${item.owner.name}`} className="btn-neon-outline text-sm px-4 py-2">
+                <Link to={`/profile/${owner.name}`} className="btn-neon-outline text-sm px-4 py-2">
                   View Profile
                 </Link>
               </div>
@@ -229,11 +370,11 @@ const ItemListing = () => {
               <div className="flex items-center gap-4 mt-4 pt-4 border-t border-border text-sm text-muted-foreground">
                 <div className="flex items-center gap-1">
                   <MapPin size={14} />
-                  <span>{item.location}</span>
+                  <span>{location}</span>
                 </div>
                 <div className="flex items-center gap-1">
                   <Clock size={14} />
-                  <span>Posted {item.postedDate}</span>
+                  <span>Posted {postedDate}</span>
                 </div>
               </div>
             </div>
