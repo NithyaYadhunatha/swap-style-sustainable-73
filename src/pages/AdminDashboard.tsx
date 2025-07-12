@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Shield, Package, Users, CheckCircle, XCircle, Trash2, Eye, TrendingUp } from 'lucide-react';
+import { useNavigate, Link } from 'react-router-dom';
+import { Shield, Package, Users, CheckCircle, XCircle, Trash2, Eye, TrendingUp, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
@@ -134,6 +134,12 @@ const AdminDashboard = () => {
         <div className="max-w-7xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
+              <Link 
+                to="/admin" 
+                className="text-muted-foreground hover:text-foreground transition-colors"
+              >
+                <ArrowLeft className="h-6 w-6" />
+              </Link>
               <Shield className="h-8 w-8 text-primary" />
               <div>
                 <h1 className="text-2xl font-bold">Admin Dashboard</h1>

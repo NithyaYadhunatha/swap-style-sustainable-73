@@ -1,6 +1,7 @@
+
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { User, Lock, Eye, EyeOff } from 'lucide-react';
+import { User, Lock, Eye, EyeOff, Shield } from 'lucide-react';
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -19,9 +20,16 @@ const Login = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically handle authentication
+    
+    // Check for admin credentials first
+    if (formData.username === 'admin' && formData.password === 'rewear123') {
+      localStorage.setItem('adminAuth', 'true');
+      navigate('/admin-dashboard');
+      return;
+    }
+    
+    // Regular user login
     console.log('Login attempt:', formData);
-    // Navigate to dashboard on successful login
     navigate('/dashboard');
   };
 
@@ -113,6 +121,26 @@ const Login = () => {
               Sign In
             </button>
           </form>
+
+          {/* Admin Access */}
+          <div className="mt-6 text-center">
+            <div className="relative">
+              <div className="absolute inset-0 flex items-center">
+                <span className="w-full border-t border-muted" />
+              </div>
+              <div className="relative flex justify-center text-xs uppercase">
+                <span className="bg-background px-2 text-muted-foreground">Admin Access</span>
+              </div>
+            </div>
+            
+            <Link
+              to="/admin-login"
+              className="mt-4 inline-flex items-center gap-2 text-sm text-primary hover:text-primary/80 transition-colors duration-200"
+            >
+              <Shield size={16} />
+              Admin Portal
+            </Link>
+          </div>
 
           {/* Sign Up Link */}
           <div className="mt-6 text-center">
