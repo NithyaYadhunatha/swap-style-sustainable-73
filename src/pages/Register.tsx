@@ -7,8 +7,7 @@ const Register = () => {
     name: '',
     email: '',
     username: '',
-    password: '',
-    userType: 'swapper'
+    password: ''
   });
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
@@ -141,55 +140,7 @@ const Register = () => {
               </div>
             </div>
 
-            {/* User Type Selection */}
-            <div>
-              <label className="block text-sm font-medium text-foreground mb-2">
-                Account Type
-              </label>
-              <div className="grid grid-cols-2 gap-4">
-                <label className="relative">
-                  <input
-                    type="radio"
-                    name="userType"
-                    value="swapper"
-                    checked={formData.userType === 'swapper'}
-                    onChange={handleChange}
-                    className="sr-only"
-                  />
-                  <div className={`p-4 border-2 rounded-lg cursor-pointer transition-all duration-200 ${
-                    formData.userType === 'swapper'
-                      ? 'border-primary bg-primary/10 text-primary'
-                      : 'border-border bg-card text-muted-foreground hover:border-primary/50'
-                  }`}>
-                    <div className="text-center">
-                      <User size={24} className="mx-auto mb-2" />
-                      <span className="font-medium">Swapper</span>
-                    </div>
-                  </div>
-                </label>
-                
-                <label className="relative">
-                  <input
-                    type="radio"
-                    name="userType"
-                    value="admin"
-                    checked={formData.userType === 'admin'}
-                    onChange={handleChange}
-                    className="sr-only"
-                  />
-                  <div className={`p-4 border-2 rounded-lg cursor-pointer transition-all duration-200 ${
-                    formData.userType === 'admin'
-                      ? 'border-primary bg-primary/10 text-primary'
-                      : 'border-border bg-card text-muted-foreground hover:border-primary/50'
-                  }`}>
-                    <div className="text-center">
-                      <UserCheck size={24} className="mx-auto mb-2" />
-                      <span className="font-medium">Admin</span>
-                    </div>
-                  </div>
-                </label>
-              </div>
-            </div>
+
 
             {/* Submit Button */}
             <button

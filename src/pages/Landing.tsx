@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { Recycle, Star, ChevronRight, ArrowRight, Users, Shirt, Award } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import heroImage from '../assets/hero-image.jpg';
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '../components/ui/carousel';
+import FeaturedItemsCarousel from '../components/FeaturedItemsCarousel';
 
 const Landing = () => {
   const featuredItems = [
@@ -79,10 +79,12 @@ const Landing = () => {
   ];
 
   const categories = [
-    { name: "Jackets", icon: "🧥", count: "150+ items" },
-    { name: "Dresses", icon: "👗", count: "200+ items" },
-    { name: "Shoes", icon: "👟", count: "180+ items" },
-    { name: "Accessories", icon: "👜", count: "95+ items" }
+    { name: "Jackets", icon: "🧥", count: 150 },
+    { name: "Dresses", icon: "👗", count: 200 },
+    { name: "Shoes", icon: "👟", count: 180 },
+    { name: "Accessories", icon: "👜", count: 95 },
+    { name: "Bags", icon: "👜", count: 80 },
+    { name: "Shirts", icon: "👕", count: 250 }
   ];
 
   const recentListings = [
@@ -118,119 +120,93 @@ const Landing = () => {
 
   const testimonials = [
     {
-      name: "Sarah M.",
-      text: "ReWear transformed my wardrobe sustainably. I've found amazing pieces while helping the environment!",
-      avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b1c5?w=100"
+      name: "Aarav S.",
+      text: "ReWear has helped me build a sustainable wardrobe. I've found amazing traditional pieces while reducing waste!",
+      avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=100"
     },
     {
-      name: "Alex K.",
-      text: "The points system is brilliant. I've swapped clothes I never wear for items I absolutely love.",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100"
+      name: "Priya R.",
+      text: "The points system is amazing. I've swapped my unused ethnic wear for beautiful new pieces that I love.",
+      avatar: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=100"
     }
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-darker-surface">
       <Navbar />
       
       {/* Hero Section */}
-      <section className="relative h-[80vh] flex items-center justify-center overflow-hidden">
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url(${heroImage})` }}
-        >
-          <div className="absolute inset-0 bg-background/80"></div>
-        </div>
-        
-        <div className="relative z-10 max-w-4xl mx-auto text-center px-4">
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 animate-fade-in">
-            Ready to Transform Your{' '}
-            <span className="text-green-400">Wardrobe?</span>
-          </h1>
-          <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-2xl mx-auto animate-slide-up">
-            Join thousands of fashion-forward individuals making sustainable choices.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-slide-up text-center">
-            <Link to="/register" className="inline-flex items-center justify-center px-6 py-3 bg-green-400 text-black font-medium rounded-lg hover:bg-green-500 transition">
-              Start Swapping
-              <ArrowRight className="ml-2" size={20} />
-            </Link>
-            <Link to="/browse" className="inline-flex items-center justify-center px-6 py-3 border border-green-400 text-green-400 bg-transparent font-medium rounded-lg hover:bg-green-800 hover:text-white transition">
-              Browse Items
-            </Link>
-            <Link to="/add-item" className="inline-flex items-center justify-center px-6 py-3 border border-green-400 text-green-400 bg-transparent font-medium rounded-lg hover:bg-green-800 hover:text-white transition">
-              List an Item
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Items Carousel */}
-      <section className="py-16 bg-darker-surface">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-foreground mb-4">Featured Items</h2>
-            <p className="text-muted-foreground">Discover trending pieces from our community</p>
-          </div>
-          
-          <Carousel className="w-full">
-            <CarouselContent className="-ml-2 md:-ml-4">
-              {featuredItems.map((item) => (
-                <CarouselItem key={item.id} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
-                  <div className="card-rewear group cursor-pointer h-full">
-                    <div className="aspect-square mb-4 overflow-hidden rounded-lg">
-                      <img 
-                        src={item.image} 
-                        alt={item.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                      />
-                    </div>
-                    <h3 className="text-lg font-semibold text-foreground mb-2">{item.title}</h3>
-                    <div className="flex justify-between items-center mb-3">
-                      <span className="text-primary font-bold">{item.points} points</span>
-                      <span className="text-sm text-muted-foreground bg-muted px-2 py-1 rounded">
-                        {item.condition}
-                      </span>
-                    </div>
-                    <Link to={`/item/${item.id}`} className="inline-flex items-center justify-center w-full text-green-400 border border-green-400 px-4 py-2 rounded-md hover:bg-green-800 hover:text-white transition">
-                      View Details
-                      <ChevronRight size={16} className="ml-1" />
-                    </Link>
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious />
-            <CarouselNext />
-          </Carousel>
-        </div>
-      </section>
-
-      {/* Browse by Categories */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-foreground mb-4">Browse by Category</h2>
-            <p className="text-muted-foreground">Find exactly what you're looking for</p>
-          </div>
-          
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {categories.map((category) => (
-              <Link
-                key={category.name}
-                to={`/browse?category=${category.name.toLowerCase()}`}
-                className="card-rewear text-center group hover:border-primary transition-colors duration-200"
-              >
-                <div className="text-4xl mb-4">{category.icon}</div>
-                <h3 className="text-lg font-semibold text-foreground mb-2">{category.name}</h3>
-                <p className="text-sm text-muted-foreground">{category.count}</p>
+      <div className="relative h-[60vh]">
+        <img
+          src={heroImage}
+          alt="Sustainable Fashion"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-black/40">
+          <div className="container mx-auto h-full flex flex-col justify-center px-4">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
+              Swap. Style. Sustain.
+            </h1>
+            <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-3xl">
+              Join the sustainable fashion revolution. Trade your unused clothes for fresh styles.
+              Earn points, reduce waste, and discover your next favorite outfit.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Link to="/register" className="inline-flex items-center justify-center px-6 py-3 bg-green-400 text-black font-medium rounded-lg hover:bg-green-500 transition">
+                Start Swapping
+                <ArrowRight className="ml-2" size={20} />
               </Link>
-            ))}
+              <Link to="/browse" className="inline-flex items-center justify-center px-6 py-3 border border-green-400 text-green-400 bg-transparent font-medium rounded-lg hover:bg-green-800 hover:text-white transition">
+                Browse Items
+              </Link>
+              <Link to="/about" className="inline-flex items-center justify-center px-6 py-3 border border-green-400 text-green-400 bg-transparent font-medium rounded-lg hover:bg-green-800 hover:text-white transition focus:outline-none focus:ring-2 focus:ring-green-400">
+                About
+              </Link>
+            </div>
           </div>
         </div>
-      </section>
+      </div>
 
+      {/* Featured Items Section */}
+      <div className="container mx-auto px-4 py-12">
+        <h2 className="text-3xl font-bold text-white mb-8">Featured Items</h2>
+        <div className="w-full">
+          <FeaturedItemsCarousel
+            items={featuredItems.map(item => ({
+              ...item,
+              description: `Condition: ${item.condition} • ${item.points} points`,
+              link: `/item/${item.id}`
+            }))}
+          />
+        </div>
+      </div>
+
+      {/* Browse by Category Section */}
+      <div className="container mx-auto px-4 py-12 bg-darker-surface">
+        <h2 className="text-3xl font-bold text-white mb-12 text-center">Browse by Category</h2>
+        
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {categories.map((category) => (
+            <Link
+              key={category.name}
+              to={`/browse?category=${category.name.toLowerCase()}`}
+              className="group relative overflow-hidden rounded-lg bg-card hover:shadow-lg transition-all duration-300"
+            >
+              <div className="p-6">
+                <div className="flex flex-col items-center text-center">
+                  <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+                    <span className="text-primary text-2xl font-bold">{category.icon}</span>
+                  </div>
+                  <h3 className="text-lg font-semibold text-white mb-2">{category.name}</h3>
+                  <p className="text-sm text-muted-foreground">{category.count}+ items</p>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
+
+      
       {/* Recent Listings */}
       <section className="py-16 bg-darker-surface">
         <div className="max-w-7xl mx-auto px-4">

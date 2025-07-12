@@ -1,16 +1,20 @@
 import { Link, useLocation } from 'react-router-dom';
-import { User, Menu, X } from 'lucide-react';
+import { User, Menu, X, Heart } from 'lucide-react';
 import { useState } from 'react';
+import logo from '../assets/logo5.jpg';
 
 const Navbar = () => {
   const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   
+
   const navItems = [
     { name: 'Home', path: '/' },
     { name: 'Browse', path: '/browse' },
     { name: 'List Item', path: '/add-item' },
-    { name: 'Dashboard', path: '/dashboard' }
+    { name: 'Liked', path: '/liked', icon: <Heart size={18} strokeWidth={2} className="align-middle" />, tooltip: 'Liked' },
+    { name: 'Dashboard', path: '/dashboard' },
+    { name: 'About', path: '/about' }
   ];
 
   const isActive = (path: string) => location.pathname === path;
@@ -21,9 +25,11 @@ const Navbar = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-gradient-primary rounded-lg flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-lg">R</span>
-            </div>
+            <img 
+              src={logo} 
+              alt="ReWear Logo" 
+              className="w-10 h-10 rounded-full object-contain"
+            />
             <span className="text-xl font-bold text-foreground">ReWear</span>
           </Link>
 
@@ -33,13 +39,20 @@ const Navbar = () => {
               <Link
                 key={item.name}
                 to={item.path}
-                className={`px-3 py-2 text-sm font-medium transition-colors duration-200 ${
+                className={`px-3 py-2 text-sm font-medium transition-colors duration-200 flex items-center gap-1 ${
                   isActive(item.path)
                     ? 'text-primary border-b-2 border-primary'
                     : 'text-muted-foreground hover:text-foreground'
                 }`}
+                {...(item.tooltip ? { title: item.tooltip } : {})}
               >
-                {item.name}
+                {item.icon ? (
+                  <span className="relative flex items-center justify-center" aria-label="liked" role="img">
+                    {item.icon}
+                  </span>
+                ) : (
+                  item.name
+                )}
               </Link>
             ))}
             

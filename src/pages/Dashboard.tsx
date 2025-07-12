@@ -1,15 +1,16 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { User, Star, Package, ShoppingBag, Plus, Edit, Trash2, MessageCircle } from 'lucide-react';
+import { User, Star, Package, ShoppingBag, Plus, Edit, Trash2, MessageCircle, Wallet } from 'lucide-react';
 import Navbar from '../components/Navbar';
+import avatar from '../assets/kjopic.jpg';
 
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState('overview');
 
   // Mock user data
   const user = {
-    name: "Sarah Mitchell",
-    avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b1c5?w=150",
+    name: "Karan Johar",
+    avatar: avatar,
     points: 750,
     level: "Gold Swapper",
     rating: 4.8,
@@ -74,6 +75,7 @@ const Dashboard = () => {
     { label: "Total Items Listed", value: myListings.length, icon: Package },
     { label: "Successful Swaps", value: user.totalSwaps, icon: ShoppingBag },
     { label: "Points Earned", value: user.points, icon: Star },
+    { label: "Balance Points", value: user.points, icon: Wallet, color: 'text-green-400' },
     { label: "Community Rating", value: user.rating, icon: User }
   ];
 
@@ -117,11 +119,11 @@ const Dashboard = () => {
               <h1 className="text-3xl font-bold text-foreground mb-2">{user.name}</h1>
               <p className="text-primary font-medium mb-4">{user.level}</p>
               
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
                 {stats.map((stat, index) => (
                   <div key={index} className="text-center">
                     <div className="flex items-center justify-center mb-2">
-                      <stat.icon className="text-primary mr-1" size={16} />
+                      <stat.icon className={stat.color ? `${stat.color} mr-1` : 'text-primary mr-1'} size={18} />
                       <span className="text-xl font-bold text-foreground">{stat.value}</span>
                     </div>
                     <p className="text-sm text-muted-foreground">{stat.label}</p>
@@ -130,15 +132,21 @@ const Dashboard = () => {
               </div>
             </div>
             
-            <div className="flex gap-3">
-              <Link to="/add-item" className="btn-neon">
-                <Plus size={20} className="mr-2" />
-                List New Item
-              </Link>
-              <Link to="/profile/edit" className="btn-neon-outline">
-                Edit Profile
-              </Link>
-            </div>
+            <div className="flex flex-col sm:flex-row items-center justify-end gap-2 sm:gap-4 w-full sm:w-auto mt-4 md:mt-0">
+  <Link
+    to="/add-item"
+    className="btn-neon flex items-center justify-center text-base font-medium rounded-lg px-6 py-2 h-12 min-w-[140px] transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary/50"
+  >
+    <Plus size={20} className="mr-2" />
+    List New Item
+  </Link>
+  <Link
+    to="/profile/edit"
+    className="btn-neon-outline flex items-center justify-center text-base font-medium rounded-lg px-6 py-2 h-12 min-w-[140px] transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary/50"
+  >
+    Edit Profile
+  </Link>
+</div>
           </div>
         </div>
 
@@ -227,13 +235,13 @@ const Dashboard = () => {
 
         {activeTab === 'listings' && (
           <div>
-            <div className="flex justify-between items-center mb-6">
-              <h2 className="text-2xl font-bold text-foreground">My Listings</h2>
-              <Link to="/add-item" className="btn-neon">
-                <Plus size={20} className="mr-2" />
-                Add New Item
-              </Link>
-            </div>
+            <div className="flex items-center justify-between mb-6">
+  <h2 className="text-2xl font-bold text-foreground">My Listings</h2>
+  <Link to="/add-item" className="btn-neon ml-auto flex items-center">
+    <Plus size={20} className="mr-2" />
+    Add New Item
+  </Link>
+</div>
             
             <div className="grid-items">
               {myListings.map((item) => (
@@ -311,18 +319,22 @@ const Dashboard = () => {
                       </div>
                     </div>
                     
-                    <div className="flex gap-2">
-                      <Link 
-                        to={`/item/${swap.id}`}
-                        className="btn-neon-outline text-sm px-4 py-2"
-                      >
-                        View Details
-                      </Link>
-                      <button className="btn-neon-outline text-sm px-4 py-2">
-                        <MessageCircle size={16} className="mr-1" />
-                        Message
-                      </button>
-                    </div>
+                    <div className="flex flex-col sm:flex-row items-center justify-end gap-2 sm:gap-4 w-full sm:w-auto mt-4 md:mt-0">
+  <Link 
+    to={`/item/${swap.id}`}
+    className="btn-neon-outline flex items-center justify-center text-sm font-medium rounded-lg px-5 py-2 h-11 min-w-[120px] transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary/50"
+  >
+    View Details
+  </Link>
+  <button 
+    className="btn-neon-outline flex items-center justify-center text-sm font-medium rounded-lg px-5 py-2 h-11 min-w-[120px] transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary/50"
+    aria-label={`Message about ${swap.title}`}
+    type="button"
+  >
+    <MessageCircle size={16} className="mr-2" />
+    Message
+  </button>
+</div>
                   </div>
                 </div>
               ))}

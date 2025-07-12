@@ -12,13 +12,15 @@ const Browse = () => {
 
   const categories = [
     { id: 'all', name: 'All Categories', count: 1250 },
-    { id: 'jackets', name: 'Jackets', count: 150 },
+    { id: 'tops', name: 'Tops', count: 300 },
+    { id: 'bottoms', name: 'Bottoms', count: 220 },
+    { id: 'outerwear', name: 'Outerwear', count: 160 },
     { id: 'dresses', name: 'Dresses', count: 200 },
-    { id: 'shoes', name: 'Shoes', count: 180 },
-    { id: 'pants', name: 'Pants', count: 120 },
-    { id: 'shirts', name: 'Shirts', count: 250 },
+    { id: 'footwear', name: 'Footwear', count: 180 },
     { id: 'accessories', name: 'Accessories', count: 95 },
-    { id: 'bags', name: 'Bags', count: 80 }
+    { id: 'activewear', name: 'Activewear', count: 90 },
+    { id: 'ethnic', name: 'Ethnic Wear', count: 70 },
+    { id: 'seasonal', name: 'Seasonal Collections', count: 60 }
   ];
 
   const conditions = [
@@ -38,70 +40,310 @@ const Browse = () => {
 
   // Mock items data
   const items = [
+    // Tops
     {
       id: 1,
-      title: "Vintage Denim Jacket",
-      image: "https://images.unsplash.com/photo-1544022613-e87ca75a784a?w=400",
-      points: 150,
+      title: "Classic White T-Shirt",
+      image: "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=400",
+      points: 50,
       condition: "Excellent",
-      category: "Jackets",
-      owner: "Sarah M.",
-      likes: 12,
+      category: "Tops",
+      owner: "Aarav S.",
+      likes: 14,
       status: "Available"
     },
     {
       id: 2,
-      title: "Designer Sneakers",
-      image: "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=400",
-      points: 200,
-      condition: "Good",
-      category: "Shoes",
-      owner: "Alex K.",
-      likes: 18,
+      title: "Striped Crop Top",
+      image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400",
+      points: 60,
+      condition: "Like New",
+      category: "Tops",
+      owner: "Nisha P.",
+      likes: 10,
       status: "Available"
     },
     {
       id: 3,
+      title: "Oversized Hoodie",
+      image: "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?w=400",
+      points: 90,
+      condition: "Good",
+      category: "Tops",
+      owner: "Rohan M.",
+      likes: 7,
+      status: "Available"
+    },
+    // Bottoms
+    {
+      id: 4,
+      title: "High-Waisted Jeans",
+      image: "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=400",
+      points: 120,
+      condition: "Excellent",
+      category: "Bottoms",
+      owner: "Priya R.",
+      likes: 11,
+      status: "Available"
+    },
+    {
+      id: 5,
+      title: "Black Leggings",
+      image: "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=400",
+      points: 70,
+      condition: "Like New",
+      category: "Bottoms",
+      owner: "Saanvi L.",
+      likes: 9,
+      status: "Available"
+    },
+    {
+      id: 6,
+      title: "Denim Shorts",
+      image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400",
+      points: 60,
+      condition: "Good",
+      category: "Bottoms",
+      owner: "Kabir D.",
+      likes: 8,
+      status: "Available"
+    },
+    // Outerwear
+    {
+      id: 7,
+      title: "Vintage Denim Jacket",
+      image: "https://images.unsplash.com/photo-1544022613-e87ca75a784a?w=400",
+      points: 150,
+      condition: "Excellent",
+      category: "Outerwear",
+      owner: "Aarav S.",
+      likes: 12,
+      status: "Available"
+    },
+    {
+      id: 8,
+      title: "Classic Trench Coat",
+      image: "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=400",
+      points: 180,
+      condition: "Good",
+      category: "Outerwear",
+      owner: "Simran K.",
+      likes: 10,
+      status: "Available"
+    },
+    {
+      id: 9,
+      title: "Bomber Jacket",
+      image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400",
+      points: 160,
+      condition: "Like New",
+      category: "Outerwear",
+      owner: "Rahul G.",
+      likes: 9,
+      status: "Available"
+    },
+    // Dresses
+    {
+      id: 10,
       title: "Summer Dress",
       image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=400",
       points: 120,
       condition: "Like New",
       category: "Dresses",
-      owner: "Jamie L.",
+      owner: "Riya M.",
       likes: 8,
       status: "Available"
     },
     {
-      id: 4,
+      id: 11,
+      title: "Floral Maxi Dress",
+      image: "https://images.unsplash.com/photo-1469398715555-76331a9957a0?w=400",
+      points: 140,
+      condition: "Excellent",
+      category: "Dresses",
+      owner: "Megha S.",
+      likes: 12,
+      status: "Available"
+    },
+    {
+      id: 12,
+      title: "Little Black Dress",
+      image: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=400",
+      points: 130,
+      condition: "Good",
+      category: "Dresses",
+      owner: "Tara J.",
+      likes: 10,
+      status: "Available"
+    },
+    // Footwear
+    {
+      id: 13,
+      title: "Designer Sneakers",
+      image: "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=400",
+      points: 200,
+      condition: "Good",
+      category: "Footwear",
+      owner: "Priya R.",
+      likes: 18,
+      status: "Available"
+    },
+    {
+      id: 14,
       title: "Leather Boots",
       image: "https://images.unsplash.com/photo-1544966503-7cc5ac882d5f?w=400",
       points: 180,
       condition: "Excellent",
-      category: "Shoes",
-      owner: "Morgan P.",
+      category: "Footwear",
+      owner: "Arjun K.",
       likes: 15,
       status: "Available"
     },
     {
-      id: 5,
-      title: "Classic White Shirt",
-      image: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=400",
-      points: 80,
+      id: 15,
+      title: "Classic Loafers",
+      image: "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=400",
+      points: 120,
+      condition: "Like New",
+      category: "Footwear",
+      owner: "Sonal V.",
+      likes: 11,
+      status: "Available"
+    },
+    // Accessories
+    {
+      id: 16,
+      title: "Leather Belt",
+      image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400",
+      points: 40,
       condition: "Excellent",
-      category: "Shirts",
-      owner: "Taylor R.",
+      category: "Accessories",
+      owner: "Rajiv N.",
       likes: 6,
       status: "Available"
     },
     {
-      id: 6,
-      title: "Knit Sweater",
-      image: "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=400",
-      points: 100,
+      id: 17,
+      title: "Silk Scarf",
+      image: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?w=400",
+      points: 35,
       condition: "Good",
-      category: "Shirts",
-      owner: "Chris M.",
-      likes: 9,
+      category: "Accessories",
+      owner: "Nikita S.",
+      likes: 5,
+      status: "Available"
+    },
+    {
+      id: 18,
+      title: "Statement Earrings",
+      image: "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=400",
+      points: 25,
+      condition: "Like New",
+      category: "Accessories",
+      owner: "Zara F.",
+      likes: 8,
+      status: "Available"
+    },
+    // Activewear
+    {
+      id: 19,
+      title: "Yoga Pants",
+      image: "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=400",
+      points: 70,
+      condition: "Excellent",
+      category: "Activewear",
+      owner: "Kavya T.",
+      likes: 10,
+      status: "Available"
+    },
+    {
+      id: 20,
+      title: "Sports Bra",
+      image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400",
+      points: 50,
+      condition: "Good",
+      category: "Activewear",
+      owner: "Ishaan P.",
+      likes: 6,
+      status: "Available"
+    },
+    {
+      id: 21,
+      title: "Running Shorts",
+      image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400",
+      points: 55,
+      condition: "Like New",
+      category: "Activewear",
+      owner: "Sana Y.",
+      likes: 7,
+      status: "Available"
+    },
+    // Ethnic Wear
+    {
+      id: 22,
+      title: "Kurta Set",
+      image: "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=400",
+      points: 110,
+      condition: "Excellent",
+      category: "Ethnic",
+      owner: "Manav B.",
+      likes: 8,
+      status: "Available"
+    },
+    {
+      id: 23,
+      title: "Saree",
+      image: "https://images.unsplash.com/photo-1469398715555-76331a9957a0?w=400",
+      points: 150,
+      condition: "Like New",
+      category: "Ethnic",
+      owner: "Pooja R.",
+      likes: 10,
+      status: "Available"
+    },
+    {
+      id: 24,
+      title: "Embroidered Dupatta",
+      image: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?w=400",
+      points: 60,
+      condition: "Good",
+      category: "Ethnic",
+      owner: "Siddhi K.",
+      likes: 5,
+      status: "Available"
+    },
+    // Seasonal Collections
+    {
+      id: 25,
+      title: "Woolen Beanie",
+      image: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?w=400",
+      points: 20,
+      condition: "Excellent",
+      category: "Seasonal",
+      owner: "Rajat S.",
+      likes: 4,
+      status: "Available"
+    },
+    {
+      id: 26,
+      title: "Raincoat",
+      image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400",
+      points: 80,
+      condition: "Good",
+      category: "Seasonal",
+      owner: "Ananya V.",
+      likes: 6,
+      status: "Available"
+    },
+    {
+      id: 27,
+      title: "Summer Hat",
+      image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400",
+      points: 30,
+      condition: "Like New",
+      category: "Seasonal",
+      owner: "Devika M.",
+      likes: 7,
       status: "Available"
     }
   ];
@@ -251,47 +493,56 @@ const Browse = () => {
 
             {/* Items Grid/List */}
             {viewMode === 'grid' ? (
-              <div className="grid-items">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {filteredItems.map((item) => (
-                  <div key={item.id} className="card-rewear group cursor-pointer">
-                    <div className="aspect-square mb-4 overflow-hidden rounded-lg relative">
-                      <img 
-                        src={item.image} 
-                        alt={item.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                      />
-                      <div className="absolute top-3 right-3">
-                        <button className="w-8 h-8 bg-background/80 rounded-full flex items-center justify-center text-muted-foreground hover:text-primary transition-colors duration-200">
-                          <Heart size={16} />
-                        </button>
+                  <div key={item.id} className="group cursor-pointer">
+                    <div className="bg-card rounded-lg overflow-hidden">
+                      <div className="aspect-[4/3] relative">
+                        <img 
+                          src={item.image} 
+                          alt={item.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                        <div className="absolute top-3 left-3">
+                          <span className="bg-green-400 text-black text-xs px-2.5 py-1 rounded-full">
+                            Available
+                          </span>
+                        </div>
+                        <div className="absolute top-3 right-3">
+                          <button className="w-8 h-8 bg-white/90 rounded-full flex items-center justify-center text-muted-foreground hover:text-primary transition-colors duration-200">
+                            <Heart size={14} />
+                          </button>
+                        </div>
                       </div>
-                      <div className="absolute bottom-3 left-3">
-                        <span className="bg-primary text-primary-foreground text-xs px-2 py-1 rounded-full">
-                          {item.status}
-                        </span>
+                      
+                      <div className="p-4">
+                        <h3 className="text-lg font-semibold text-foreground mb-2 truncate">
+                          {item.title}
+                        </h3>
+                        <div className="flex justify-between items-center mb-2">
+                          <span className="text-green-400 font-bold">{item.points} points</span>
+                          <span className="text-sm text-muted-foreground bg-muted px-2 py-1 rounded">
+                            {item.condition}
+                          </span>
+                        </div>
+                        
+                        <div className="flex justify-between items-center text-sm text-muted-foreground mb-3">
+                          <span>by {item.owner}</span>
+                          <div className="flex items-center gap-1">
+                            <Heart size={12} />
+                            <span>{item.likes}</span>
+                          </div>
+                        </div>
+                        
+                        <Link 
+                          to={`/item/${item.id}`} 
+                          className="w-full btn-neon-outline text-sm py-2 px-4 flex items-center justify-center gap-2 hover:bg-green-400 hover:text-black transition-colors duration-200"
+                        >
+                          View Details
+                          <ArrowRight size={12} />
+                        </Link>
                       </div>
                     </div>
-                    
-                    <h3 className="text-lg font-semibold text-foreground mb-2">{item.title}</h3>
-                    <div className="flex justify-between items-center mb-2">
-                      <span className="text-primary font-bold">{item.points} points</span>
-                      <span className="text-sm text-muted-foreground bg-muted px-2 py-1 rounded">
-                        {item.condition}
-                      </span>
-                    </div>
-                    
-                    <div className="flex justify-between items-center text-sm text-muted-foreground mb-3">
-                      <span>by {item.owner}</span>
-                      <div className="flex items-center gap-1">
-                        <Heart size={12} />
-                        <span>{item.likes}</span>
-                      </div>
-                    </div>
-                    
-                    <Link to={`/item/${item.id}`} className="btn-neon-outline w-full justify-center text-sm py-2">
-                      View Details
-                      <ArrowRight size={14} className="ml-1" />
-                    </Link>
                   </div>
                 ))}
               </div>

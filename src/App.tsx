@@ -16,6 +16,8 @@ import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
 import ProtectedAdminRoute from "./components/ProtectedAdminRoute";
 import NotFound from "./pages/NotFound";
+import About from "./pages/About";
+import Liked from "./pages/Liked";
 
 const queryClient = new QueryClient();
 
@@ -33,6 +35,7 @@ const App = () => (
           <Route path="/item/:id" element={<ItemListing />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/add-item" element={<AddItem />} />
+          <Route path="/about" element={<About />} />
           <Route path="/admin" element={<AdminPanel />} />
           <Route path="/admin-login" element={<AdminLogin />} />
           <Route path="/admin-dashboard" element={
@@ -40,6 +43,7 @@ const App = () => (
               <AdminDashboard />
             </ProtectedAdminRoute>
           } />
+          <Route path="/liked" element={<Liked />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
