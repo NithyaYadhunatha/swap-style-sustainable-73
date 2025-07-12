@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Shield, Package, Users, CheckCircle, XCircle, Trash2, Eye, TrendingUp, ArrowLeft, AlertTriangle } from 'lucide-react';
@@ -18,7 +17,8 @@ const mockPendingItems = [
     uploadDate: "2024-01-20",
     status: "pending",
     price: 45.00,
-    description: "Classic vintage denim jacket in excellent condition"
+    description: "Classic vintage denim jacket in excellent condition",
+    reportCount: 0
   },
   {
     id: 2,
@@ -28,7 +28,8 @@ const mockPendingItems = [
     uploadDate: "2024-01-19",
     status: "pending",
     price: 85.00,
-    description: "Limited edition designer sneakers, barely worn"
+    description: "Limited edition designer sneakers, barely worn",
+    reportCount: 0
   },
   {
     id: 3,
@@ -38,7 +39,8 @@ const mockPendingItems = [
     uploadDate: "2024-01-18",
     status: "pending",
     price: 120.00,
-    description: "Genuine leather handbag with original tags"
+    description: "Genuine leather handbag with original tags",
+    reportCount: 0
   }
 ];
 
@@ -113,7 +115,7 @@ const AdminDashboard = () => {
     const item = pendingItems.find(item => item.id === itemId);
     if (item) {
       setPendingItems(prev => prev.filter(item => item.id !== itemId));
-      setApprovedItems(prev => [...prev, { ...item, status: 'approved', reportCount: 0 }]);
+      setApprovedItems(prev => [...prev, { ...item, status: 'approved' }]);
       setStats(prev => ({
         ...prev,
         totalPending: prev.totalPending - 1,
